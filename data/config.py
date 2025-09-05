@@ -1,7 +1,16 @@
-import os
 from dotenv import load_dotenv
+from pathlib import Path
+import os
 
-load_dotenv()
+# Force load from the correct absolute path
+env_path = Path(__file__).resolve().parent.parent / ".env"
+print("🔍 Forcing .env load from:", env_path)
+load_dotenv(dotenv_path=Path(__file__).resolve().parent.parent / ".env", override=True)
+
+print("🔍 DEBUG inside config.py:")
+print("BOT_TOKEN =", os.getenv("BOT_TOKEN"))
+print("ADMINS =", os.getenv("ADMINS"))
+
 
 BOT_TOKEN = os.getenv('BOT_TOKEN')
 ADMINS = [int(os.getenv('ADMINS'))] if os.getenv('ADMINS') else []
