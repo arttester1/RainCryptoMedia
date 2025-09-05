@@ -1,5 +1,3 @@
-if not exist keyboards\inline.py (
-type > keyboards\inline.py << EOF
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 from data.config import DEPOSIT_AMOUNTS
 
@@ -16,8 +14,6 @@ def main_menu_keyboard():
 def deposit_keyboard():
     keyboard = []
     for amount in DEPOSIT_AMOUNTS:
-        keyboard.append([InlineKeyboardButton(f"\${amount}", callback_data=f"deposit_{amount}")])
+        keyboard.append([InlineKeyboardButton(f"${amount}", callback_data=f"deposit_{amount}")])
     keyboard.append([InlineKeyboardButton("🔙 Back", callback_data="main_menu")])
     return InlineKeyboardMarkup(keyboard)
-EOF
-)

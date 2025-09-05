@@ -1,6 +1,6 @@
 import logging
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, CallbackQueryHandler, ConversationHandler
-
+from handlers.callbacks import handle_callback
 import os
 from pathlib import Path
 
@@ -50,6 +50,9 @@ def main():
         async def fallback_help(update, context):
             await update.message.reply_text("Help command not configured yet.")
         application.add_handler(CommandHandler("help", fallback_help))
+
+    # ADD THIS LINE HERE - Callback handler for buttons
+    application.add_handler(CallbackQueryHandler(handle_callback))
 
     # Start the bot
     print("Starting bot...")

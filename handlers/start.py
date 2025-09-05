@@ -2,6 +2,7 @@ from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import ContextTypes
 import sqlite3
 import secrets
+from keyboards.inline import main_menu_keyboard
 
 async def start_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user = update.effective_user
@@ -38,11 +39,13 @@ async def start_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     conn.close()
 
-    # Send welcome message
+    # Send welcome message WITH BUTTONS
+    keyboard = main_menu_keyboard()
+    username = user.first_name or user.username or "there"
     await update.message.reply_text(
-        "👋 Welcome to RainBooster SMM Services!\n\n"
-        "We provide high-quality social media marketing services.\n"
-        "Use /help to see available commands."
+        f"👋 Welcome to RainBoostBot, {username}!\n\n"
+        "Choose an option:",
+        reply_markup=keyboard
     )
 
 async def help_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
