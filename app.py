@@ -1,5 +1,7 @@
 import logging
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, CallbackQueryHandler, ConversationHandler
+import os
+print(f"🔑 BOT_TOKEN: {os.getenv('BOT_TOKEN')}")
 
 # Import your config
 try:
