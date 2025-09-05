@@ -1,5 +1,8 @@
 import logging
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, CallbackQueryHandler, ConversationHandler
+from dotenv import load_dotenv
+load_dotenv()
+
 import os
 print(f"🔑 BOT_TOKEN: {os.getenv('BOT_TOKEN')}")
 
